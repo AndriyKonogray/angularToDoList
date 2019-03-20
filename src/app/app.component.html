@@ -5,7 +5,7 @@
   </input-form>
   <projects
   [projects] = "projects"
-  (selectProj)="selectProject($event)">
+  (selectProject)="selectProject($event)">
   </projects>
   <h2>Tasks</h2>
   <input-form
@@ -14,7 +14,7 @@
   <tasks
   [tasks] = "tasks"
   [selectedProject]="selectedProject"
-  (selectTsk)="selectTask($event)"
+  (selectTask)="selectTask($event)"
   >
   </tasks>
 </aside>

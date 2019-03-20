@@ -9,12 +9,12 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class TasksComponent {
   @Input() tasks;
   @Input() selectedProject;
-  @Output() selectTsk = new EventEmitter();
+  @Output() selectTask = new EventEmitter();
   selectedTask: any;
 
-  selectTask(task) {
+  selectThisTask(task) {
     this.selectedTask = task;
-    this.selectTsk.emit(task);
+    this.selectTask.emit(task);
   }
 
   isSelected(project) {

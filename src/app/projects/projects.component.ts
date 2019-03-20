@@ -9,11 +9,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class ProjectsComponent {
   selectedProject: any;
   @Input() projects;
-  @Output() selectProj = new EventEmitter();
+  @Output() selectProject = new EventEmitter();
 
-  selectProject(project) {
+  selectThisProject(project) {
     this.selectedProject = project;
-    this.selectProj.emit(project);
+    this.selectProject.emit(project);
   }
 
   isSelected(project) {
