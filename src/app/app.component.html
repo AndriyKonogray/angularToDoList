@@ -1,36 +1,31 @@
 <aside>
-    <h2>New task</h2>
-     <div>
-      <form  (submit)="addTask()">
-        <input type ="text"
-              [(ngModel)]="newTaskName"
-                name="taskName">
-       <button type="submit">
-          Add task {{newTaskName}}
-       </button>
-      </form>
-      <form (click)="deleteTask(selectedTask)">
-          <button
-            type="click">
-            Delete last task
-          </button>
-      </form>
-    </div>
-
+  <h2>Projects</h2>
+  <input-form
+    (createNewName)="addProject($event)">
+  </input-form>
+  <projects
+  [projects] = "projects"
+  (selectProj)="selectProject($event)">
+  </projects>
   <h2>Tasks</h2>
-  <ul>
-    <li
-      *ngFor="let task of tasks"
-      (click)="selectTask(task)"
-      [class.selected]="isSelected(task)"
-      [class.completed]="false">
-      {{task.name}}
-    </li>
-  </ul>
+  <input-form
+    (createNewName)="addTask($event)">
+  </input-form>
+  <tasks
+  [tasks] = "tasks"
+  [selectedProject]="selectedProject"
+  (selectTsk)="selectTask($event)"
+  >
+  </tasks>
 </aside>
-<main *ngIf="selectedTask">
-    <h2>{{selectedTask.name}}</h2>
-    <input type="text" [(ngModel)]="selectedTask.name">
-</main>
+<project *ngIf="selectedProject"
+  [edit] = "selectedProject"
+  (deleteProject) = "deleteSelectedProject()">
+</project>
+<task *ngIf="selectedTask"
+  [edit]="selectedTask"
+  (deleteTask) = "deleteSelectedTask()">
+</task>
+
 
 

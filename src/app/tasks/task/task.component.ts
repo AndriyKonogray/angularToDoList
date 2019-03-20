@@ -1,42 +1,15 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-task',
+  selector: 'task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent {
+  @Input() edit;
+  @Output() deleteTask = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit() {
+  deleteThisTask() {
+    this.deleteTask.emit();
   }
-
-  selectedTask: any;
-  newTaskName: any;
-  tasks = [
-    {name: 'read book'},
-    {name: 'read doc'},
-    {name: 'practice'}
-  ];
-
-  deleteTask(task) {
-    this.tasks = this.tasks.filter(t => {
-      return t.name != this.selectedTask;
-    });
-  }
-
-  selectTask(task) {
-    this.selectedTask = task;
-  }
-
-  isSelected(task) {
-    return this.selectedTask === task;
-  }
-
-  addTask() {
-    this.tasks.push({ name: this.newTaskName});
-    this.newTaskName = '';
-  }
-
 }

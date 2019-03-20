@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-project',
+  selector: 'project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent {
+  @Input() edit;
+  @Output() deleteProject = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit() {
+  deleteThisProject() {
+    this.deleteProject.emit();
   }
-
 }

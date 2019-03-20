@@ -1,3 +1,10 @@
-<p>
-  input-form works!
-</p>
+<div>
+  <form  (submit)="addNewName()">
+    <input type ="text"
+           [(ngModel)]="newName"
+           name="Name">
+    <button type="submit">
+      Add
+    </button>
+  </form>
+</div>

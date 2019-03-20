@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-input-form',
+  selector: 'input-form',
   templateUrl: './input-form.component.html',
   styleUrls: ['./input-form.component.scss']
 })
-export class InputFormComponent implements OnInit {
+export class InputFormComponent {
+  newName;
+  @Output() createNewName = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit() {
+  addNewName() {
+    console.log(this.newName);
+    this.createNewName.emit(this.newName);
+    this.newName = '';
   }
-
 }

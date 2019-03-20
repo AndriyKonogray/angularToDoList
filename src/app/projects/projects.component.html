@@ -1,3 +1,9 @@
-<p>
-  projects works!
-</p>
+<ul>
+  <li
+    *ngFor="let project of projects"
+    (click)="selectProject(project)"
+    [class.selected]="isSelected(project)"
+    >
+    {{project.name}}
+  </li>
+</ul>
