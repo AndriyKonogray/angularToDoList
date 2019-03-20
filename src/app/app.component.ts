@@ -57,10 +57,12 @@ export class AppComponent {
 
   deleteSelectedProject() {
      this.projects.splice(this.projects.indexOf(this.selectedProject), 1);
+     this.selectedProject = null;
     }
 
   deleteSelectedTask() {
     this.tasks.splice(this.tasks.indexOf(this.selectedTask), 1);
+    this.selectedTask = null;
   }
 }
 
