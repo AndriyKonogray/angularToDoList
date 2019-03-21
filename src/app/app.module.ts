@@ -7,7 +7,8 @@ import { ProjectComponent } from './projects/project/project.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { TaskComponent } from './tasks/task/task.component';
-
+import {HttpClientModule} from "@angular/common/http";
+import {ToDoListService} from './services/to-do-list.service';
 
 @NgModule({
   declarations: [
@@ -16,13 +17,14 @@ import { TaskComponent } from './tasks/task/task.component';
     ProjectComponent,
     TasksComponent,
     InputFormComponent,
-    TaskComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ToDoListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

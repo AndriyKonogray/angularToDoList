@@ -1,31 +1,29 @@
 <aside>
   <h2>Projects</h2>
   <input-form
-    (createNewName)="addProject($event)">
+      (createNewName)="addProject($event)">
   </input-form>
   <projects
-  [projects] = "projects"
-  (selectProject)="selectProject($event)">
+      [projects] = "projects"
+      (select)="selectProject($event)"
+      (delete)="deleteProject($event)">
   </projects>
   <h2>Tasks</h2>
   <input-form
-    (createNewName)="addTask($event)">
+      (createNewName)="addTask($event)">
   </input-form>
-  <tasks
-  [tasks] = "tasks"
-  [selectedProject]="selectedProject"
-  (selectTask)="selectTask($event)"
+  <tasks *ngIf="selectedProject"
+      [tasks]="selectedProjectTasks"
   >
   </tasks>
 </aside>
-<project *ngIf="selectedProject"
-  [edit] = "selectedProject"
-  (deleteProject) = "deleteSelectedProject()">
-</project>
-<task *ngIf="selectedTask"
-  [edit]="selectedTask"
-  (deleteTask) = "deleteSelectedTask()">
-</task>
+<!--<project *ngIf="selectedProject"
+      [edit] = "selectedProject"
+      (deleteProject) = "deleteProject()"
+      (enter)="enterNewNameForProject($event)"
+      (escape)="unSelectProject()">
+</project>-->
+
 
 
 

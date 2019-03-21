@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'tasks',
@@ -8,20 +8,17 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 export class TasksComponent {
   @Input() tasks;
-  @Input() selectedProject;
-  @Output() selectTask = new EventEmitter();
-  selectedTask: any;
 
-  selectThisTask(task) {
-    this.selectedTask = task;
-    this.selectTask.emit(task);
+  deleteTask(task) {
+    this.tasks.splice(this.tasks.indexOf(task), 1);
   }
 
-  isSelected(project) {
-    return this.selectedTask === project;
-  }
-
-  isThisProject(task) {
-  return (this.selectedProject.id != task.projectId);
+  updateTask(task) {
+    for(let i = 0; i < this.tasks.length; i++) {
+      if(this.tasks[i].id === task.id) {
+        this.tasks[i] = task;
+        break;
+      }
+    }
   }
 }

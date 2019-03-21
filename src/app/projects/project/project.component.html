@@ -1,5 +1,20 @@
-<h2>{{edit.name}}</h2>
-<input type="text" [(ngModel)]="edit.name">
+<!--<h2>{{project.name}}</h2>
+<input type="text" placeholder="Enter New Name" #inputProjectName (keyup)="saveName($event, inputProjectName)">
 <button (click)="deleteThisProject()">
   Delete
-</button>
+</button>-->
+<div *ngIf="!editing">
+  <span (click)="checkedTask()"
+        [class.checked]="checked"
+        [class.textDecoration]="checked"
+  >{{task.name}}</span>
+  <button (click)="startEditing()">Edit</button>
+  <button (click)="deleteThisTask()">
+    Delete
+  </button>
+</div>
+<div *ngIf="editing">
+  <input type="text" placeholder="Enter New Name" #inputTaskName (keyup)="saveProject($event, inputTaskName)">
+  <button (click)="updateProject(inputTaskName)">Save</button>
+  <button (click)="returnInProjectList(inputTaskName)">Cancel</button>
+</div>

@@ -8,8 +8,8 @@ import {Component} from '@angular/core';
 
 export class AppComponent {
   title = 'ToDoList';
+  selectedProjectTasks = [];
   selectedProject: any;
-  selectedTask: any;
   projects = [
     {name: "read book",
     id: 1},
@@ -27,13 +27,30 @@ export class AppComponent {
     id: 2}
   ];
 
-  selectTask(task) {
-    this.selectedTask = task;
-  }
-
   selectProject(project) {
     this.selectedProject = project;
+    this.selectedProjectTasks = [];
+    for(let i = 0; i < this.tasks.length; i++) {
+      if(+this.tasks[i].projectId === project.id) {
+        this.selectedProjectTasks.push(this.tasks[i]);
+      }
+    }
   }
+
+  deleteProject(project) {
+    for(let i=0; i < this.tasks.length; i++) {
+      if(this.tasks[i].projectId === project.id) {
+        this.tasks.splice(i, 1);
+      }
+    }
+    this.projects.splice(this.projects.indexOf(project), 1);
+    this.selectedProject = null;
+  }
+
+  unSelectProject() {
+    this.selectedProject = null;
+  }
+
 
   addTask(taskName) {
     if(this.selectedProject != undefined || this.selectedProject != null) {
@@ -53,16 +70,6 @@ export class AppComponent {
       name: projectName,
       id: this.projects.length + 1
     });
-  }
-
-  deleteSelectedProject() {
-     this.projects.splice(this.projects.indexOf(this.selectedProject), 1);
-     this.selectedProject = null;
-    }
-
-  deleteSelectedTask() {
-    this.tasks.splice(this.tasks.indexOf(this.selectedTask), 1);
-    this.selectedTask = null;
   }
 }
 

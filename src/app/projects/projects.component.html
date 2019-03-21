@@ -1,9 +1,11 @@
 <ul>
-  <li
+  <project
     *ngFor="let project of projects"
-    (click)="selectThisProject(project)"
-    [class.selected]="isSelected(project)"
+    [project]="project"
+    (delete)="deleteProject($event)"
+    (update) = "updateProject($event)"
+    (select)="selectProject($event)"
     >
     {{project.name}}
-  </li>
+  </project>
 </ul>

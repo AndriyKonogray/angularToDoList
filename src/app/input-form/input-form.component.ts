@@ -10,7 +10,6 @@ export class InputFormComponent {
   @Output() createNewName = new EventEmitter();
 
   addNewName() {
-    console.log(this.newName);
     this.createNewName.emit(this.newName);
     this.newName = '';
   }
