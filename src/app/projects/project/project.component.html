@@ -1,20 +1,14 @@
-<!--<h2>{{project.name}}</h2>
-<input type="text" placeholder="Enter New Name" #inputProjectName (keyup)="saveName($event, inputProjectName)">
-<button (click)="deleteThisProject()">
-  Delete
-</button>-->
 <div *ngIf="!editing">
-  <span (click)="checkedTask()"
-        [class.checked]="checked"
-        [class.textDecoration]="checked"
-  >{{task.name}}</span>
+  <span (click)="selectProject()"
+        [class.selected]="isSelected(project)">
+    {{project.name}}</span>
   <button (click)="startEditing()">Edit</button>
-  <button (click)="deleteThisTask()">
+  <button (click)="deleteThisProject()">
     Delete
   </button>
 </div>
 <div *ngIf="editing">
-  <input type="text" placeholder="Enter New Name" #inputTaskName (keyup)="saveProject($event, inputTaskName)">
-  <button (click)="updateProject(inputTaskName)">Save</button>
-  <button (click)="returnInProjectList(inputTaskName)">Cancel</button>
+  <input type="text" placeholder="Enter New Name" #inputProjectName (keyup)="saveProject($event, inputProjectName)">
+  <button (click)="updateProject(inputProjectName)">Save</button>
+  <button (click)="returnInProjectList(inputProjectName)">Cancel</button>
 </div>

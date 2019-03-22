@@ -8,7 +8,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { TaskComponent } from './tasks/task/task.component';
 import {HttpClientModule} from "@angular/common/http";
-import {ToDoListService} from './services/to-do-list.service';
+import {ToDoListService} from "./services/to-do-list.service";
 
 @NgModule({
   declarations: [

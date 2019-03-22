@@ -6,23 +6,27 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent {
+
   @Input() project;
+  @Input() selectedProject;
   @Output() delete = new EventEmitter();
   @Output() update = new EventEmitter();
+  @Output() select = new EventEmitter();
 
   editing: boolean = false;
-  checked: boolean = false;
+
+  isSelected(project) {
+    return this.selectedProject === project;
+  }
+
+
+  selectProject() {
+    this.select.emit(this.project);
+  }
+
 
   deleteThisProject() {
     this.delete.emit(this.project);
-  }
-
-  saveName(event, inputName) {
-    if (event.key === "Enter") {
-      this.update.emit(inputName.value);
-    } else if (event.key === "Escape") {
-      this.update.emit();
-    }
   }
 
   updateProject(inputName) {
@@ -48,4 +52,3 @@ export class ProjectComponent {
     this.editing = false;
   }
 }
-

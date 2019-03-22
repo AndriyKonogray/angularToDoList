@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Task} from "../entity/task";
 
 @Component({
   selector: 'tasks',
@@ -8,17 +9,14 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 export class TasksComponent {
   @Input() tasks;
+  @Output() delete = new EventEmitter();
+  @Output() update = new EventEmitter();
 
   deleteTask(task) {
-    this.tasks.splice(this.tasks.indexOf(task), 1);
+    this.delete.emit(task);
   }
 
   updateTask(task) {
-    for(let i = 0; i < this.tasks.length; i++) {
-      if(this.tasks[i].id === task.id) {
-        this.tasks[i] = task;
-        break;
-      }
-    }
+    this.update.emit(task);
   }
 }

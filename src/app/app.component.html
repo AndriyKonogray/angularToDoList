@@ -6,7 +6,8 @@
   <projects
       [projects] = "projects"
       (select)="selectProject($event)"
-      (delete)="deleteProject($event)">
+      (delete)="deleteProject($event)"
+      (update)="updateProject($event)">
   </projects>
   <h2>Tasks</h2>
   <input-form
@@ -14,15 +15,13 @@
   </input-form>
   <tasks *ngIf="selectedProject"
       [tasks]="selectedProjectTasks"
+         (delete)="deleteTask($event)"
+         (update)="updateTask($event)"
   >
   </tasks>
 </aside>
-<!--<project *ngIf="selectedProject"
-      [edit] = "selectedProject"
-      (deleteProject) = "deleteProject()"
-      (enter)="enterNewNameForProject($event)"
-      (escape)="unSelectProject()">
-</project>-->
+
+
 
 
 
