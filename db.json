@@ -3,16 +3,24 @@
     {
       "name": "read book",
       "id": 1
+    },
+    {
+      "name": "asdwsd",
+      "id": 2
+    },
+    {
+      "name": "ghjkhjk",
+      "id": 3
     }
   ],
   "tasks": [
     {
-      "name": "sadwdasd",
+      "name": "task1",
       "projectId": 1,
       "id": 1
     },
     {
-      "name": "vxcvfdsf",
+      "name": "task2",
       "projectId": 1,
       "id": 2
     }

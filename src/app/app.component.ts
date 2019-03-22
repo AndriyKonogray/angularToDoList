@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {ToDoListService} from "./services/to-do-list.service";
 import {Task} from "./entity/task";
 import {Project} from "./entity/project";
-
+import {ProjectService} from "./services/project.service";
+import {TaskService} from "./services/task.service";
 
 @Component({
   selector: 'app-root',
@@ -12,21 +12,21 @@ import {Project} from "./entity/project";
 
 export class AppComponent {
 
-  constructor(private toDoListService: ToDoListService) {}
+  constructor(private projectService: ProjectService, private taskService: TaskService) {}
 
   title = 'ToDoList';
   selectedProjectTasks = [];
   selectedProject: any;
   projects: Project[]  = [];
   tasks: Task[] = [];
-  
+
   selectProject(project) {
     this.selectedProject = project;
     this.formTasksForProject(project);
   }
 
  deleteProject(project) {
-    this.toDoListService.deleteProject(project)
+    this.projectService.deleteProject(project)
       .subscribe(()=> {
         for(let i=0; i < this.tasks.length; i++) {
           if(this.tasks[i].projectId === project.id) {
@@ -40,7 +40,7 @@ export class AppComponent {
 
   addProject(projectName) {
     let newProject = new Project(projectName, this.projects.length + 1);
-    this.toDoListService.createProject(newProject)
+    this.projectService.createProject(newProject)
       .subscribe((project: Project)=> {
         this.projects.push(project);
       });
@@ -48,20 +48,15 @@ export class AppComponent {
   }
 
   getAllProjects() {
-    this.toDoListService
+    this.projectService
       .getProjects()
       .subscribe((projects: Project[])=> {
         this.projects = projects;
       })
   }
 
-  ngOnInit() {
-    this.getAllProjects();
-    this.getAllTasks();
-  }
-
   updateProject(project) {
-    this.toDoListService.changeProjectName(project)
+    this.projectService.changeProjectName(project)
       .subscribe(()=> {
         for (let i = 0; i < this.projects.length; i++) {
             if (this.projects[i].id === project.id) {
@@ -70,11 +65,10 @@ export class AppComponent {
           }
         }
       });
-
   }
 
   getAllTasks() {
-    this.toDoListService
+    this.taskService
       .getTasks()
       .subscribe((tasks: Task[])=> {
         this.tasks = tasks;
@@ -83,7 +77,7 @@ export class AppComponent {
 
 
   deleteTask(task) {
-    this.toDoListService.deleteTask(task)
+    this.taskService.deleteTask(task)
       .subscribe(()=> {
         this.tasks.splice(this.tasks.indexOf(task), 1);
         this.formTasksForProject(this.selectedProject);
@@ -92,7 +86,7 @@ export class AppComponent {
 
   addTask(taskName) {
     let newTask = new Task(taskName, this.selectedProject.id, this.tasks.length + 1);
-    this.toDoListService.createTask(newTask)
+    this.taskService.createTask(newTask)
       .subscribe((task: Task)=> {
         if(this.selectedProject != undefined || this.selectedProject != null) {
           this.tasks.push(task);
@@ -105,7 +99,7 @@ export class AppComponent {
     }
 
   updateTask(task) {
-    this.toDoListService.changeTaskName(task)
+    this.taskService.changeTaskName(task)
       .subscribe(()=> {
         for(let i = 0; i < this.tasks.length; i++) {
           if(this.tasks[i].id === task.id) {
@@ -124,6 +118,11 @@ export class AppComponent {
         this.selectedProjectTasks.push(this.tasks[i]);
       }
     }
+  }
+
+  ngOnInit() {
+    this.getAllProjects();
+    this.getAllTasks();
   }
 }
 
