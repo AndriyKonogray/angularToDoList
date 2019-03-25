@@ -10,7 +10,7 @@ const routes: Routes = [
     component: ProjectsComponent
   },
   {
-    path: 'project/: projectId',
+    path: 'project/:projectId',
     component: PageViewComponent,
     pathMatch: 'full'
   },

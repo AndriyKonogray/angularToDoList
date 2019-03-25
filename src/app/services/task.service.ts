@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Task} from '../entity/task';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class TaskService {

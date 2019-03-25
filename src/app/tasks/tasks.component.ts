@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Task} from '../entity/task';
 import {TaskService} from '../services/task.service';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'tasks',

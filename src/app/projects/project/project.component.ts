@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Project} from '../../entity/project';
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'project',
@@ -9,18 +8,9 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProjectComponent {
   @Input() selectedProjectId: string;
-  /*constructor( private route: ActivatedRoute) {
-    this.selectedProjectId = this.route.snapshot.paramMap.get(' projectId');
-  }*/
-
   @Input() project: Project;
   @Output() delete = new EventEmitter();
   @Output() update = new EventEmitter();
-
-
-  /*selectProject() {
-    this.selectedProjectId = this.route.snapshot.paramMap.get(' projectId');
-  }*/
 
   editing: boolean = false;
 
