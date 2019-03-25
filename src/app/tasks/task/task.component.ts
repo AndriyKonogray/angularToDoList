@@ -12,7 +12,6 @@ export class TaskComponent {
    @Output() update = new EventEmitter();
 
   editing: boolean = false;
-  checked: boolean = false;
 
    deleteThisTask() {
      this.delete.emit(this.task);
@@ -24,7 +23,8 @@ export class TaskComponent {
    }
 
   checkedTask() {
-    this.checked = !this.checked;
+     this.task.done = !this.task.done;
+     this.update.emit(this.task);
   }
 
   startEditing() {

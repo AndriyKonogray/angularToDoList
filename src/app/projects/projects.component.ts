@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Project} from '../entity/project';
 import {ProjectService} from '../services/project.service';
 
@@ -10,17 +10,18 @@ import {ProjectService} from '../services/project.service';
 })
 
 export class ProjectsComponent {
-
   constructor(private projectService: ProjectService) {
     this.getAllProjects();
   }
-
+  @Input() selectedProjectId;
+  @Output() delete = new EventEmitter();
   projects: Project[] = [];
 
   deleteProject(project) {
     this.projectService.deleteProject(project)
       .subscribe(() => {
         this.getAllProjects();
+        this.delete.emit();
       });
   }
 

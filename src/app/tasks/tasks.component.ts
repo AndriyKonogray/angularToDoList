@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Task} from '../entity/task';
 import {TaskService} from '../services/task.service';
 import {ActivatedRoute} from '@angular/router';
@@ -11,13 +11,12 @@ import {ActivatedRoute} from '@angular/router';
 
 export class TasksComponent {
 
-  constructor(private taskService: TaskService, private route: ActivatedRoute) {
-    this.selectedProjectId = this.route.snapshot.paramMap.get(' projectId');
-    this.getAllProjectTasks();
+  constructor(private taskService: TaskService) {
+
   }
 
-  tasks: Task[] = [];
-  selectedProjectId;
+  @Input() tasks: Task[] = [];
+  @Input() selectedProjectId;
 
   getAllProjectTasks() {
     this.taskService.getTasksByProjectId(this.selectedProjectId)
@@ -34,7 +33,7 @@ export class TasksComponent {
   }
 
   addTask(taskName) {
-    const newTask: Task = {name: taskName, projectId: this.selectedProjectId};
+    const newTask: Task = {name: taskName, projectId: this.selectedProjectId, done: false};
     this.taskService.createTask(newTask)
       .subscribe(() => {
         this.getAllProjectTasks();

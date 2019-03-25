@@ -6,6 +6,7 @@
   <project
     *ngFor="let project of projects"
     [project]="project"
+    [selectedProjectId]="selectedProjectId"
     (delete)="deleteProject($event)"
     (update) = "updateProject($event)"
   >

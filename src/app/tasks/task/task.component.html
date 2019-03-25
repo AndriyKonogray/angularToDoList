@@ -1,7 +1,7 @@
 <div *ngIf="!editing">
   <span (click)="checkedTask()"
-  [class.checked]="checked"
-  [class.textDecoration]="checked"
+  [class.checked]="task.done"
+  [class.textDecoration]="task.done"
   >{{task.name}}</span>
   <button (click)="startEditing()">Edit</button>
   <button (click)="deleteThisTask()">Delete</button>

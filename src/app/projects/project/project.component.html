@@ -1,6 +1,7 @@
 <div *ngIf="!editing">
   <span>
-    <a [routerLink]="['/project', project.id]"> {{project.name}}</a></span>
+    <a [routerLink]="['/project', project.id]"
+    [class.selected]="isSelected()"> {{project.name}}</a></span>
   <button (click)="startEditing()">Edit</button>
   <button (click)="deleteThisProject()">Delete</button>
 </div>

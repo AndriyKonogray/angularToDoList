@@ -12,6 +12,7 @@ import {ProjectService} from './services/project.service';
 import {TaskService} from './services/task.service';
 import { EditingItemComponent } from './editing-item/editing-item.component';
 import {AppRoutingModule} from './app-routing.module';
+import { PageViewComponent } from './page-view/page-view.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {AppRoutingModule} from './app-routing.module';
     InputFormComponent,
     TaskComponent,
     EditingItemComponent,
+    PageViewComponent,
   ],
   imports: [
     BrowserModule,

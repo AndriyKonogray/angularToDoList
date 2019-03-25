@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ProjectsComponent} from './projects/projects.component';
 import {TasksComponent} from  './tasks/tasks.component';
+import {PageViewComponent} from './page-view/page-view.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'project/: projectId',
-    component: TasksComponent,
+    component: PageViewComponent,
     pathMatch: 'full'
   },
   {
