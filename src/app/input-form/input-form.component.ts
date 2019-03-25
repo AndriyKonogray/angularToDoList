@@ -10,7 +10,9 @@ export class InputFormComponent {
   @Output() createNewName = new EventEmitter();
 
   addNewName() {
-    this.createNewName.emit(this.newName);
-    this.newName = '';
+    if (this.newName !== '') {
+      this.createNewName.emit(this.newName);
+      this.newName = '';
+    } else { alert('Please input some name'); }
   }
 }

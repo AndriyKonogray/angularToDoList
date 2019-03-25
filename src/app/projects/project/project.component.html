@@ -1,14 +1,12 @@
 <div *ngIf="!editing">
   <span (click)="selectProject()"
         [class.selected]="isSelected(project)">
-    {{project.name}}</span>
+        {{project.name}}</span>
   <button (click)="startEditing()">Edit</button>
-  <button (click)="deleteThisProject()">
-    Delete
-  </button>
+  <button (click)="deleteThisProject()">Delete</button>
 </div>
-<div *ngIf="editing">
-  <input type="text" placeholder="Enter New Name" #inputProjectName (keyup)="saveProject($event, inputProjectName)">
-  <button (click)="updateProject(inputProjectName)">Save</button>
-  <button (click)="returnInProjectList(inputProjectName)">Cancel</button>
-</div>
+<editing-item *ngIf="editing"
+[name]="project.name"
+(return)="returnInProjectList()"
+(update)="updateProject($event)">
+</editing-item>

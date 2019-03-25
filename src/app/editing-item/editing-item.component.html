@@ -1,0 +1,3 @@
+<input type="text" value="{{name}}" #inputProjectName (keyup)="keyUp($event, inputProjectName)">
+<button (click)="updateItem(inputProjectName)">Save</button>
+<button (click)="returnInList(inputProjectName)">Cancel</button>

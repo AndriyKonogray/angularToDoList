@@ -1,10 +1,5 @@
-export class Task {
+export interface Task {
   name: string;
   projectId: string;
-  id: number;
-  constructor(name: string, projectId: string, id: number) {
-    this.name = name;
-    this.projectId = projectId;
-    this.id = id;
-  }
+  id?: number;
 }

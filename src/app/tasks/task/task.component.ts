@@ -23,16 +23,6 @@ export class TaskComponent {
      this.update.emit(this.task);
    }
 
-   saveTask(event, inputName) {
-     if(event.key === "Enter") {
-       this.updateTask(inputName);
-       this.returnInTaskList(inputName);
-     }
-     else if(event.key === "Escape") {
-       this.returnInTaskList(inputName);
-     }
-   }
-
   checkedTask() {
     this.checked = !this.checked;
   }
@@ -41,8 +31,7 @@ export class TaskComponent {
     this.editing = !this.editing;
   }
 
-  returnInTaskList(inputName) {
-    inputName.value = "";
+  returnInTaskList() {
     this.editing = false;
   }
 }

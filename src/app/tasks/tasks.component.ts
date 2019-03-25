@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Task} from "../entity/task";
+import {Task} from '../entity/task';
+import {TaskService} from '../services/task.service';
 
 @Component({
   selector: 'tasks',
@@ -8,15 +9,32 @@ import {Task} from "../entity/task";
 })
 
 export class TasksComponent {
+
+  constructor(private taskService: TaskService) {}
+
+  @Input() selectedProjectId;
   @Input() tasks;
-  @Output() delete = new EventEmitter();
-  @Output() update = new EventEmitter();
+  @Output() render = new EventEmitter();
 
   deleteTask(task) {
-    this.delete.emit(task);
+    this.taskService.deleteTask(task)
+      .subscribe(() => {
+        this.render.emit();
+      });
+  }
+
+  addTask(taskName) {
+    const newTask: Task = {name: taskName, projectId: this.selectedProjectId};
+    this.taskService.createTask(newTask)
+      .subscribe(() => {
+        this.render.emit();
+      });
   }
 
   updateTask(task) {
-    this.update.emit(task);
+    this.taskService.changeTaskName(task)
+      .subscribe(() => {
+            this.render.emit();
+      });
   }
 }

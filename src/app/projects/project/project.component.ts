@@ -19,11 +19,9 @@ export class ProjectComponent {
     return this.selectedProject === project;
   }
 
-
   selectProject() {
     this.select.emit(this.project);
   }
-
 
   deleteThisProject() {
     this.delete.emit(this.project);
@@ -34,21 +32,11 @@ export class ProjectComponent {
     this.update.emit(this.project);
   }
 
-  saveProject(event, inputName) {
-    if (event.key === "Enter") {
-      this.updateProject(inputName);
-      this.returnInProjectList(inputName);
-    } else if (event.key === "Escape") {
-      this.returnInProjectList(inputName);
-    }
+  returnInProjectList() {
+    this.editing = false;
   }
 
   startEditing() {
     this.editing = !this.editing;
-  }
-
-  returnInProjectList(inputName) {
-    inputName.value = "";
-    this.editing = false;
   }
 }

@@ -1,25 +1,16 @@
 <aside>
-  <h2>Projects</h2>
-  <input-form
-      (createNewName)="addProject($event)">
-  </input-form>
   <projects
-      [projects] = "projects"
-      (select)="selectProject($event)"
-      (delete)="deleteProject($event)"
-      (update)="updateProject($event)">
+  (select)="selectProject($event)"
+  (render)="getAllProjectTasks()">
   </projects>
-  <h2>Tasks</h2>
-  <input-form
-      (createNewName)="addTask($event)">
-  </input-form>
   <tasks *ngIf="selectedProject"
-      [tasks]="selectedProjectTasks"
-         (delete)="deleteTask($event)"
-         (update)="updateTask($event)"
+      [selectedProjectId]="selectedProject.id"
+      [tasks]="tasks"
+      (render)="getAllProjectTasks()"
   >
   </tasks>
 </aside>
+
 
 
 

@@ -1,18 +1,15 @@
-
 <div *ngIf="!editing">
   <span (click)="checkedTask()"
   [class.checked]="checked"
   [class.textDecoration]="checked"
   >{{task.name}}</span>
   <button (click)="startEditing()">Edit</button>
-  <button (click)="deleteThisTask()">
-    Delete
-  </button>
+  <button (click)="deleteThisTask()">Delete</button>
   </div>
-<div *ngIf="editing">
-  <input type="text" placeholder="Enter New Name" #inputTaskName (keyup)="saveTask($event, inputTaskName)">
-  <button (click)="updateTask(inputTaskName)">Save</button>
-  <button (click)="returnInTaskList(inputTaskName)">Cancel</button>
-</div>
+<editing-item *ngIf="editing"
+              [name]="task.name"
+              (return)="returnInTaskList()"
+              (update)="updateTask($event)">
+</editing-item>
 
 

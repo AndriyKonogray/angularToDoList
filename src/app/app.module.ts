@@ -8,7 +8,27 @@ import { TasksComponent } from './tasks/tasks.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { TaskComponent } from './tasks/task/task.component';
 import {HttpClientModule} from "@angular/common/http";
-import {ToDoListService} from "./services/to-do-list.service";
+import {ProjectService} from "./services/project.service";
+import {TaskService} from "./services/task.service";
+import { EditingItemComponent } from './editing-item/editing-item.component';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'projects',
+    component: ProjectsComponent
+  },
+  {
+    path: 'tasks',
+    component: TasksComponent
+  },
+  {
+    path: '',
+    redirectTo: 'projects',
+    pathMatch: 'full'
+  }
+
+];
 
 @NgModule({
   declarations: [
@@ -17,14 +37,17 @@ import {ToDoListService} from "./services/to-do-list.service";
     ProjectComponent,
     TasksComponent,
     InputFormComponent,
-    TaskComponent
+    TaskComponent,
+    EditingItemComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [ToDoListService],
+  providers: [ProjectService, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
