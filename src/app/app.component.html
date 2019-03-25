@@ -1,19 +1,9 @@
 <aside>
-  <projects
-  (select)="selectProject($event)"
-  (render)="getAllProjectTasks()">
-  </projects>
-  <tasks *ngIf="selectedProject"
-      [selectedProjectId]="selectedProject.id"
-      [tasks]="tasks"
-      (render)="getAllProjectTasks()"
-  >
-  </tasks>
+  <nav>
+      <a routerLink="projects" class="title__link">Projects</a>
+  </nav>
 </aside>
-
-
-
-
-
-
+<div>
+  <router-outlet></router-outlet>
+</div>
 

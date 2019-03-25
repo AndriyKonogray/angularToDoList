@@ -6,11 +6,9 @@
   <project
     *ngFor="let project of projects"
     [project]="project"
-    [selectedProject]="selectedProject"
     (delete)="deleteProject($event)"
     (update) = "updateProject($event)"
-    (select)="selectProject($event)"
   >
-    {{project.name}}
+    {{project}}
   </project>
 </ul>

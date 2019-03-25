@@ -7,28 +7,11 @@ import { ProjectComponent } from './projects/project/project.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { TaskComponent } from './tasks/task/task.component';
-import {HttpClientModule} from "@angular/common/http";
-import {ProjectService} from "./services/project.service";
-import {TaskService} from "./services/task.service";
+import {HttpClientModule} from '@angular/common/http';
+import {ProjectService} from './services/project.service';
+import {TaskService} from './services/task.service';
 import { EditingItemComponent } from './editing-item/editing-item.component';
-import { Routes, RouterModule } from '@angular/router';
-
-const routes: Routes = [
-  {
-    path: 'projects',
-    component: ProjectsComponent
-  },
-  {
-    path: 'tasks',
-    component: TasksComponent
-  },
-  {
-    path: '',
-    redirectTo: 'projects',
-    pathMatch: 'full'
-  }
-
-];
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -44,8 +27,7 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule,
-    RouterModule.forRoot(routes)
+    AppRoutingModule
   ],
   providers: [ProjectService, TaskService],
   bootstrap: [AppComponent]

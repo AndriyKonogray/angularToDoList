@@ -8,20 +8,10 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class ProjectComponent {
 
   @Input() project;
-  @Input() selectedProject;
   @Output() delete = new EventEmitter();
   @Output() update = new EventEmitter();
-  @Output() select = new EventEmitter();
 
   editing: boolean = false;
-
-  isSelected(project) {
-    return this.selectedProject === project;
-  }
-
-  selectProject() {
-    this.select.emit(this.project);
-  }
 
   deleteThisProject() {
     this.delete.emit(this.project);
