@@ -9,6 +9,7 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
   getTasksByProjectId(projectId): Observable<Task[]> {
+    console.dir(this);
     return this.http.get<Task[]>(`http://localhost:3000/projects/${projectId}/tasks`);
   }
 

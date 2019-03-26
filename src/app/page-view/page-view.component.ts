@@ -2,28 +2,19 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {TaskService} from '../services/task.service';
 import {Task} from '../entity/task';
-import {switchMap} from "rxjs/operators";
+import {map, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'page-view',
   templateUrl: './page-view.component.html',
   styleUrls: ['./page-view.component.scss']
 })
-export class PageViewComponent implements OnInit{
+export class PageViewComponent implements OnInit {
   tasks: Task[] = [];
-  tasks$: Task[] = [];
 
   selectedProjectId: string;
   constructor(private route: ActivatedRoute, private taskService: TaskService) {
     this.selectedProjectId = this.route.snapshot.paramMap.get('projectId');
-    this.getAllProjectTasks();
-  }
-
-  getAllProjectTasks() {
-    this.taskService.getTasksByProjectId(this.selectedProjectId)
-      .subscribe((tasks: Task[]) => {
-        this.tasks = tasks;
-      });
   }
 
   selectProject() {
@@ -31,12 +22,13 @@ export class PageViewComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.tasks = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.taskService.getTasksByProjectId(params.get('projectId')))
-        .subscribe((tasks: Task[]) => {
-          return tasks;
-        })
-    );
+   this.route.paramMap
+     .pipe(
+       map( (params: ParamMap) => params.get('projectId')),
+       switchMap(id => this.taskService.getTasksByProjectId(id))
+     )
+     .subscribe((tasks: Task[]) => {
+       this.tasks = tasks;
+     });
   }
 }

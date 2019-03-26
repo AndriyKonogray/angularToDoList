@@ -1,7 +1,6 @@
 <div>
   <projects [selectedProjectId]="selectedProjectId"
-  (click)="selectProject()"
-  (delete)="getAllProjectTasks()"></projects>
+  (click)="selectProject()"></projects>
   <tasks [tasks]="tasks"
   [selectedProjectId]="selectedProjectId"></tasks>
 </div>
