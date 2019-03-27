@@ -20,16 +20,16 @@ export class ProjectsComponent {
   deleteProject(project) {
     this.projectService.deleteProject(project)
       .subscribe(() => {
-        this.getAllProjects();
-        this.delete.emit();
+        this.projects.splice(this.projects.indexOf(project), 1);
+        this.delete.emit(project.id);
       });
   }
 
   addProject(projectName) {
     const newProject: Project = {name: projectName};
     this.projectService.createProject(newProject)
-      .subscribe(() => {
-        this.getAllProjects();
+      .subscribe((createdProject) => {
+        this.projects.push(createdProject);
       });
 
   }
@@ -44,8 +44,8 @@ export class ProjectsComponent {
 
   updateProject(project) {
     this.projectService.changeProjectName(project)
-      .subscribe(() => {
-        this.getAllProjects();
+      .subscribe((changedProject) => {
+        this.projects.splice(this.projects.indexOf(project), 1, changedProject);
       });
   }
 }

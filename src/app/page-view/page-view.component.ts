@@ -13,13 +13,7 @@ export class PageViewComponent implements OnInit {
   tasks: Task[] = [];
 
   selectedProjectId: string;
-  constructor(private route: ActivatedRoute, private taskService: TaskService) {
-    this.selectedProjectId = this.route.snapshot.paramMap.get('projectId');
-  }
-
-  selectProject() {
-    this.selectedProjectId = this.route.snapshot.paramMap.get('projectId');
-  }
+  constructor(private route: ActivatedRoute, private taskService: TaskService) {}
 
   ngOnInit() {
    this.route.paramMap
@@ -30,5 +24,16 @@ export class PageViewComponent implements OnInit {
      .subscribe((tasks: Task[]) => {
        this.tasks = tasks;
      });
+   this.route.paramMap.pipe(map((params: ParamMap) => params.get('projectId')))
+      .subscribe((projectId) => {
+        this.selectedProjectId = projectId;
+      });
+  }
+
+  deleteProjectTasks(projectId) {
+    this.taskService.deleteTaskByProjectId(projectId)
+      .subscribe(() => {
+        this.tasks = [];
+      });
   }
 }

@@ -17,32 +17,25 @@ export class TasksComponent {
   @Input() tasks: Task[] = [];
   @Input() selectedProjectId;
 
-  getAllProjectTasks() {
-    this.taskService.getTasksByProjectId(this.selectedProjectId)
-      .subscribe((tasks: Task[]) => {
-        this.tasks = tasks;
-      });
-  }
-
   deleteTask(task) {
     this.taskService.deleteTask(task)
       .subscribe(() => {
-        this.getAllProjectTasks();
+        this.tasks.splice(this.tasks.indexOf(task), 1);
       });
   }
 
   addTask(taskName) {
     const newTask: Task = {name: taskName, projectId: this.selectedProjectId, done: false};
     this.taskService.createTask(newTask)
-      .subscribe(() => {
-        this.getAllProjectTasks();
+      .subscribe((createdTask) => {
+        this.tasks.push(createdTask);
       });
   }
 
   updateTask(task) {
     this.taskService.changeTaskName(task)
-      .subscribe(() => {
-        this.getAllProjectTasks();
+      .subscribe((changedTask) => {
+        this.tasks.splice(this.tasks.indexOf(task), 1, changedTask);
       });
   }
 }

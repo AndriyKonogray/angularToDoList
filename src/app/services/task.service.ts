@@ -23,4 +23,8 @@ export class TaskService {
   deleteTask(task: Task): Observable<Task> {
     return this.http.delete<Task>(`http://localhost:8080/tasks/${task.id}`);
   }
+
+  deleteTaskByProjectId(projectId): Observable<Task[]> {
+    return this.http.delete<Task[]>(`http://localhost:8080/projects/${projectId}/tasks`);
+  }
 }
