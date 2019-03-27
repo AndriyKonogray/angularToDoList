@@ -10,18 +10,18 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>((`http://localhost:3000/projects`));
+    return this.http.get<Project[]>((`http://localhost:8080/projects`));
   }
 
   createProject(project: Project): Observable<Project> {
-    return this.http.post<Project>(`http://localhost:3000/projects`, project);
+    return this.http.post<Project>(`http://localhost:8080/projects`, project);
   }
 
   changeProjectName(project: Project): Observable<Project> {
-    return this.http.put<Project>(`http://localhost:3000/projects/${project.id}`, project);
+    return this.http.put<Project>(`http://localhost:8080/projects/${project.id}`, project);
   }
 
   deleteProject(project: Project): Observable<Project> {
-    return this.http.delete<Project>(`http://localhost:3000/projects/${project.id}`);
+    return this.http.delete<Project>(`http://localhost:8080/projects/${project.id}`);
   }
 }
