@@ -31,9 +31,6 @@ export class PageViewComponent implements OnInit {
   }
 
   deleteProjectTasks(projectId) {
-    this.taskService.deleteTaskByProjectId(projectId)
-      .subscribe(() => {
         this.tasks = [];
-      });
   }
 }
