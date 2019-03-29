@@ -3,6 +3,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {TaskService} from '../services/task.service';
 import {Task} from '../entity/task';
 import {map, switchMap} from 'rxjs/operators';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'page-view',
@@ -12,21 +13,15 @@ import {map, switchMap} from 'rxjs/operators';
 export class PageViewComponent implements OnInit {
   tasks: Task[] = [];
 
-  selectedProjectId: string;
+  projectId$: Observable<string>;
   constructor(private route: ActivatedRoute, private taskService: TaskService) {}
 
   ngOnInit() {
-   this.route.paramMap
-     .pipe(
-       map( (params: ParamMap) => params.get('projectId')),
-       switchMap(id => this.taskService.getTasksByProjectId(id))
-     )
-     .subscribe((tasks: Task[]) => {
-       this.tasks = tasks;
-     });
-   this.route.paramMap.pipe(map((params: ParamMap) => params.get('projectId')))
-      .subscribe((projectId) => {
-        this.selectedProjectId = projectId;
+   this.projectId$ = this.route.paramMap.pipe(map((params: ParamMap) => params.get('projectId')));
+   this.projectId$
+      .pipe(switchMap(id => this.taskService.getTasksByProjectId(id)))
+      .subscribe((tasks: Task[]) => {
+        this.tasks = tasks;
       });
   }
 
