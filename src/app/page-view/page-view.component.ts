@@ -30,7 +30,7 @@ export class PageViewComponent implements OnInit {
       });
   }
 
-  deleteProjectTasks(projectId) {
+  deleteProjectTasks() {
         this.tasks = [];
   }
 }

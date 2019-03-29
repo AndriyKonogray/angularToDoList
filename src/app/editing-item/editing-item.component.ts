@@ -15,10 +15,10 @@ export class EditingItemComponent {
   }
 
   keyUp(event, inputName) {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       this.updateItem(inputName);
       this.returnInList();
-    } else if (event.key === "Escape") {
+    } else if (event.key === 'Escape') {
       this.returnInList();
     }
   }

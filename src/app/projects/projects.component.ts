@@ -21,7 +21,7 @@ export class ProjectsComponent {
     this.projectService.deleteProject(project)
       .subscribe(() => {
         this.projects.splice(this.projects.indexOf(project), 1);
-        this.delete.emit(project.id);
+        this.delete.emit();
       });
   }
 
